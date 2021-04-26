@@ -606,7 +606,7 @@ function construire_url_depart() {
     // il faut modifier la fin du chemin d'accès (iframe-embed.html par index.html)
     let url_sortie = new URL(url)
     let chemin_acces = url.pathname.toString();
-    let nouveau_chemin_acces = chemin_acces.substring(0, chemin_acces.lastIndexOf('/')) + "index.html";
+    let nouveau_chemin_acces = chemin_acces.substring(0, chemin_acces.lastIndexOf('/') + 1) + "index.html";
     url_sortie.pathname = nouveau_chemin_acces;
     return url_sortie.toString();
 }
