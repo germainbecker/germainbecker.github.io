@@ -623,7 +623,7 @@ function construire_url_code_integration(){
     var url_code = new URL(url_sortie);
     let chemin_acces = url_code.pathname.toString();
     console.log(chemin_acces);
-    let nouveau_chemin_acces = chemin_acces.substring(0, chemin_acces.lastIndexOf('/'));
+    let nouveau_chemin_acces = chemin_acces.substring(0, chemin_acces.lastIndexOf('/') + 1);
     console.log(nouveau_chemin_acces);
     url_code.pathname = nouveau_chemin_acces + "iframe-embed.html";
     return url_code.toString();
