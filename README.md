@@ -14,4 +14,4 @@ Répertoire `recherche-textuelle` : [ici](https://germainbecker.github.io/recher
 
 Germain Becker, Lycée Emmanuel Mounier, ANGERS
 
-Tout est publié, sauf mention contraire, sous licence CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr)
+Tout est publié, sauf mention contraire, sous licence [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr)
