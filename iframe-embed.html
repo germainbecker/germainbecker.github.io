@@ -9,7 +9,7 @@
       name="description"
       content="version 1.0 - licence CC BY-NC-SA 4.0 - 2021"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style_iframe.css" />
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -21,10 +21,6 @@
   <body>
     <div id="conteneur-global">
       <div id="conteneur-gauche">
-        <div id="closed-icon">
-          <i id="icone-sidebar" class="fas fa-angle-double-left"></i>
-        </div>
-        <div id="titre-page">Recherche d'un motif dans un texte</div>
         <div id="zone-formulaire">
           <form id="form-saisie">
             <div class="une-saisie">
@@ -36,106 +32,17 @@
               <input type="text" id="imotif" class="zone-saisie" size="auto" />
             </div>
           </form>
-          <div id="choix-algo">
-            <div id="clic-algo">
-              <div id="clic-algo-explication">Choix de l'algorithme</div>
-              <label for="rech_naive" class="radio">
-                <input
-                  type="radio"
-                  name="choix-algo"
-                  id="rech_naive"
-                  class="radio__input"
-                  value="rech_naive"
-                  checked
-                />
-                <div class="radio__radio"></div>
-                Recherche naïve
-              </label>
-              <label for="rech_bmh" class="radio">
-                <input
-                  type="radio"
-                  name="choix-algo"
-                  id="rech_bmh"
-                  value="bmh"
-                  class="radio__input"
-                />
-                <div class="radio__radio"></div>
-                Boyer-Moore-Horspool
-              </label>
-              <label for="rech_bmha" class="radio">
-                <input
-                  type="radio"
-                  name="choix-algo"
-                  id="rech_bmha"
-                  class="radio__input"
-                  value="bmha"
-                />
-                <div class="radio__radio"></div>
-                BMH amélioré
-              </label>
-            </div>
-            <div id="select-algo-div">
-              <select name="algo" id="select-algo">
-                <option value="">-- Choisissez un algo --</option>
-                <option value="rech_naive">Recherche naive</option>
-                <option value="bmh">Algorithme de BMH</option>
-                <option value="bmha">Algorithme "amélioré" de BHM</option>
-              </select>
-            </div>
-            <div id="reinitialiser">
-              <div id="effacer">Réinitialiser</div>
-            </div>
-          </div>
         </div>
-        <div id="info-licence">
-          <i class="fas fa-info"></i>
-          <div id="info-txt">À propos</div>
-        </div>
-        <div id="info-panel">
-          <div id="btn-fermeture">
-            <i class="fas fa-times"></i>
-          </div>
-          <p>
-            <strong>Auteur</strong> : Germain BECKER. <strong>Licence</strong> : cette page est publiée sous la licence <a
-              href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr"
-              target="_blank"
-              >Creative Commons BY-NC-SA 4.0</a
-            >
-                <img
-                  class="centre"
-                  src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"
-                  alt="Licence Creative Commons"
-                />
-    
-          </p>
-          <p>
-            Ce travail est un
-            prolongement de celui de Jean Diraison (<a
-              href="https://diraison.github.io/BMH/"
-              target="_blank"
-              >page web</a
-            >
-            et
-            <a href="https://github.com/diraison/BMH/" target="_blank">code</a>
-            publié sous licence CC-BY-NC 2.0), merci à lui 🙏.
-          </p>            
-            
-            
-          </p>
-          <p>
-            
-          </p>
-
-          <p>
-            Les icônes utilisées proviennent des sites
-            <a href="https://fontawesome.com/" target="_blank"
-              >fontawesome.com</a
-            > (sous licence CC-BY 4.0 : <a href="https://fontawesome.com/license/free" target="_blank">lien vers licence</a>) et <a href="https://www.flaticon.com/" title="Flaticon">flaticon.com</a> (sous licence CC-BY, auteur <a href="https://www.freepik.com" title="Freepik">Freepik</a>).
-          </p>
-        </div>
-      </div>
+      </div>        
       <div id="conteneur-droit">
-        <div id="titre-algo">Algorithme naïf</div>
+          <div id="titre-lien">
+            <div id="titre-algo">Algorithme naïf</div>
+            <div id="lien-vers-appli"><a class="lien" id="lien-sortie" href="#" target="_blank"></a>
+                <span>Modifier</span>                 
+                <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 115.71" style="enable-background:new 0 0 122.88 115.71" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M116.56,3.69l-3.84,53.76l-17.69-15c-19.5,8.72-29.96,23.99-30.51,43.77c-17.95-26.98-7.46-50.4,12.46-65.97 L64.96,3L116.56,3.69L116.56,3.69z M28.3,0h14.56v19.67H32.67c-4.17,0-7.96,1.71-10.72,4.47c-2.75,2.75-4.46,6.55-4.46,10.72 l-0.03,46c0.03,4.16,1.75,7.95,4.5,10.71c2.76,2.76,6.56,4.48,10.71,4.48h58.02c4.15,0,7.95-1.72,10.71-4.48 c2.76-2.76,4.48-6.55,4.48-10.71v-6.96h17.01v11.33c0,7.77-3.2,17.04-8.32,22.16c-5.12,5.12-12.21,8.32-19.98,8.32H28.3 c-7.77,0-14.86-3.2-19.98-8.32C3.19,102.26,0,95.18,0,87.41l0.03-59.1C0,20.52,3.19,13.43,8.31,8.31C13.43,3.19,20.51,0,28.3,0 L28.3,0z"/></g></svg>
+            </div>
+          </div>
+        
         <div id="resultats">
           <div id="conteneur-resultat">
             <div id="nb-comparaisons">
@@ -229,13 +136,13 @@
               </svg>
             </div>
           </div>
-          <div id="playpausecontainer">
+          <!-- <div id="playpausecontainer">
             <button id="playpause"></button>
             <div id="vitesse">
               <input type="range" id="vitesse" name="vitesse" min="0" max="2" />
               <label for="volume">Vitesse</label>
             </div>
-          </div>
+          </div> -->
         </div>
         <section id="fenetre-glissante">
           <div id="phrase"></div>
@@ -277,23 +184,10 @@
           </div>
         </div>
 
-        <div id="generer-lien">
-          <div id="lien-url">
-            <input class="btn-lien" id="btn-lien-url" type="button" value="Générer un lien permanent" />
-            <input class ="champ-de-sortie" id="url-de-sortie" type="text" />
-          </div>
-          <div id="lien-integration">
-            <input class="btn-lien" id="btn-lien-integration" type="button" value="Générer un code d'intégation" />
-            <input class ="champ-de-sortie" id="champ-code-integration" type="text" />
-          </div>
-            
-
-        </div>
       </div>
     </div>
 
     
-    <script src="recherche.js"></script>
-    <script src="script.js"></script>
+    <script src="recherche_iframe.js"></script>
   </body>
 </html>
