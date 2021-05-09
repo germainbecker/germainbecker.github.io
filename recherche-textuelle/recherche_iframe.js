@@ -67,7 +67,7 @@ function afficher_table_decalages(recherche) {
         if ((Object.keys(translation).length == 0) || ("" in translation && translation[""] == 0)) {
             return;
         }
-        let premiere_ligne = "<tr><th id=\"lettre\">lettre</th><th id=\"decalage\">décalage</th></tr>";
+        let premiere_ligne = "<tr><th id=\"lettre\">lettre</th><th id=\"decalage\">décalage max</th></tr>";
         lettres = Object.keys(translation);
         let html ="";
         lettres.forEach(lettre => {
