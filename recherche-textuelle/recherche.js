@@ -389,8 +389,8 @@ function recherche_boyermoore_horspool(motif, phrase) {
         let decalage = k + 1;
         let lettre = phrase[debut + k];
         if (lettre in decalages) {
-            let posfin = motif.length - 1 - k;
-            decalage = decalages[lettre] - posfin;
+            let posfin = motif.length - 1 - k;  // nb de caractères qui ont "matché"
+            decalage = decalages[lettre] - posfin; // decalage possible = decalage max - nb de carac qui ont "matché"
         }
         debut += Math.max(decalage, 1);  // si décalage négatif on décale d'un cran seulement
         historique.deplacer(debut);
@@ -729,7 +729,7 @@ for (let i = 0; i < radio_btn.length; i++) {
 /* --- TOUT EFFACER --- */
 
 reinitialiser = function() {
-    let url_origine = new URL(window.location.origin);
+    let url_origine = new URL(window.location.origin + window.location.pathname);
     document.location.replace(url_origine);
 }
 
