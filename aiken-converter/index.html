@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aiken Converter</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">A</div>
+    <span class="logo-name">Aiken Converter</span>
+    <span class="logo-tag">v1.1</span>
+  </div>
+  <div>
+    <a href="https://docs.moodle.org/en/Aiken_format" target="_blank" class="header-link">📖 Doc Aiken</a>
+  </div>
+</header>
+
+<main class="app">
+
+  <div class="hero">
+    <h1>Convertissez vos QCM<br><span>format Aiken</span></h1>
+    <p>Collez votre questionnaire, obtenez un quiz interactif, du Markdown, des PDF et des fichiers LibreOffice — tout dans votre navigateur, sans serveur.</p>
+  </div>
+
+  <details style="margin-bottom:1.5rem;">
+    <summary>Format Aiken attendu</summary>
+    <div class="info-card" style="margin-top:.75rem">
+      <div class="info-card-icon">📐</div>
+      <div>
+        <div class="info-card-title">Règles du format</div>
+        <pre><span class="kw">La question sur une seule ligne</span>
+A. Première proposition
+B. Deuxième proposition
+C. Troisième proposition
+<span class="ans">ANSWER: B</span>
+
+<span class="kw">Question suivante ?</span>
+A. ...
+<span class="ans">ANSWER: A</span></pre>
+        <p class="info-card-note">⚠ ANSWER: en majuscules · Options : A. B. C. ou A) B) C) · Séparez les questions par une ligne vide</p>
+      </div>
+    </div>
+  </details>
+
+  <div class="card">
+    <div class="card-header"><span class="card-label">📋 Votre questionnaire Aiken</span></div>
+    <div class="title-row">
+      <input type="text" class="title-input" id="customTitle" placeholder="Titre du questionnaire (ex: Révisions Histoire-Géo)">
+    </div>
+    <textarea id="aikenInput" placeholder="Collez ici votre texte au format Aiken..."></textarea>
+    <div id="status" class="status"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-label">⚙ Options du quiz interactif</span></div>
+    <div class="options-grid">
+      <label class="opt-toggle"><input type="checkbox" id="optShuffle"><span class="opt-toggle-icon">🔀</span> Mélanger les questions</label>
+      <label class="opt-toggle"><input type="checkbox" id="optFeedback" checked><span class="opt-toggle-icon">💬</span> Feedback immédiat</label>
+      <label class="opt-toggle"><input type="checkbox" id="optShowAnswer" checked><span class="opt-toggle-icon">✅</span> Afficher la bonne réponse</label>
+      <label class="opt-toggle"><input type="checkbox" id="optShuffleOpts"><span class="opt-toggle-icon">🎲</span> Mélanger les options</label>
+    </div>
+    <div class="action-row">
+      <button class="btn-primary" onclick="parseAndConvert()">⟶ Convertir</button>
+      <button class="btn-secondary" onclick="loadDemo()">✦ Charger un exemple</button>
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="results-banner">
+      <div>
+        <div class="results-banner-count" id="qCount">0 <span>questions</span></div>
+        <div class="results-banner-text" id="qSubtitle">parsées avec succès</div>
+      </div>
+      <button class="btn-secondary btn-reparse" onclick="parseAndConvert()">↺ Reparser</button>
+    </div>
+
+    <div class="export-section">
+      <div class="section-label">Téléchargements</div>
+      <div class="export-grid">
+        <button class="btn-export" onclick="downloadQuizHTML()"><div class="exp-badge html">🌐</div><div><span class="exp-name">Quiz interactif</span><span class="exp-desc">.html — autonome</span></div></button>
+        <button class="btn-export" onclick="downloadMarkdown()"><div class="exp-badge md">📄</div><div><span class="exp-name">Markdown</span><span class="exp-desc">.md — toutes questions</span></div></button>
+        <button class="btn-export" onclick="downloadPDF()"><div class="exp-badge pdf">📋</div><div><span class="exp-name">PDF — Questions</span><span class="exp-desc">.pdf — impression A4</span></div></button>
+        <button class="btn-export" onclick="downloadPDFSlides()"><div class="exp-badge pdfsl">🖼️</div><div><span class="exp-name">PDF — Diaporama</span><span class="exp-desc">.pdf — paysage</span></div></button>
+        <button class="btn-export" onclick="downloadODT()"><div class="exp-badge odt">📝</div><div><span class="exp-name">ODT Writer</span><span class="exp-desc">.odt — LibreOffice</span></div></button>
+        <button class="btn-export" onclick="downloadODP()"><div class="exp-badge odp">📊</div><div><span class="exp-name">ODP Impress</span><span class="exp-desc">.odp — diaporama</span></div></button>
+      </div>
+    </div>
+
+    <div class="section-label">Aperçu</div>
+    <div class="preview-card">
+      <div class="preview-tabs">
+        <button class="preview-tab active" onclick="showTab(this,'parsed')">Questions parsées</button>
+        <button class="preview-tab" onclick="showTab(this,'markdown')">Markdown</button>
+        <div class="preview-tabs-spacer"></div>
+        <button class="btn-copy-md" id="btnCopyMd" onclick="copyMarkdown()" title="Copier le Markdown" style="display:none">
+          📋 Copier
+        </button>
+      </div>
+      <div id="tab-parsed"   class="preview-pane active"><div id="parsedPreview" class="q-list"></div></div>
+      <div id="tab-markdown" class="preview-pane"><pre id="markdownPreview" tabindex="0"></pre></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- CDN libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<!-- App scripts -->
+<script src="js/parser.js"></script>
+<script src="js/quiz-template.js"></script>
+<script src="js/exports.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
